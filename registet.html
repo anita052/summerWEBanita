@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogSis</title>
+    <link rel="stylesheet" href="./repository.css">
+    <link rel="icon" href="./pic/bone-removebg-preview.png" type="image/x-icon"
+    <script defer src="./aaaa.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="html1.html" >Sign in</a>
+        <a href="#registet" class="active">registet</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+         </a>
+        </div>
+    <div class="GridContainer">
+        <div class="logo move">
+            <img id="bone" src="./pic/bone-removebg-preview.png" >
+            <header>DogSis</header> 
+        </div>
+        <div class="headrs">
+            <h1>DogSis</h1> 
+            <h3>Join our community and find the perfect doggister for your dog</h3>
+        </div>
+        <img class= "image
+        " src="./dogwalker.jpg"  >
+        <div class ="form reg">
+            <form class="fields" action="/action_page.php" onsubmit="matchPassword()"></form>
+        
+                <div class="Ffirst">
+                    <label for="email"></label>
+                    <input type="email"placeholder="&#9993 Email" id="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"  required >
+                    <label for="password"></label>
+                    <input type="password" placeholder="&#128274 Password"  name="pswd1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <label for="ConfirmPassword"></label>
+                    <input type="password" placeholder="&#128274 Confirm Password"  name="pswd2" required>
+                    <label for="fname"></label>
+                    <input type="text" placeholder="Full name" id="fname" name="fname" required>
+                    <label for="phone"></label>
+                    <input type="text"placeholder="&#9743 Phone number" id="Phone" name="Phone"  >
+                </div>
+                <div class="Fsecond">
+                    <label for="DogName"></label>
+                    <input type="text" placeholder="&#128021 Dog Name" id="DogName" name="DogName" >
+                    <label for="DogBreed"></label>
+                    <input type="text" placeholder="&#128041 Dog Breed" id="DogBreed" name="DogBreed" >
+                    <label for="DogGender">&#9893 Dog Gender:</label>
+                    <select name="DogGender" id="DogGender">
+                        <option value="MaleDog">male</option>
+                        <option value="FemaleDog">Female</option>
+                    </select><br>
+                    
+                    <label for="DogAge">&#128116;&#127996;&#128118;&#127996;Dog Age:</label>
+                    <select name="DogAge" id="DogAge">
+                        <option value="Puppy">0-2</option>
+                        <option value="Young">2-7</option>
+                        <option value="Adult">7-10</option>
+                        <option value="Old">10+</option>
+                    </select><br>
+
+                    <label  for="DogWeight">&#128054Dog Weight:</label>
+                    <select  name="DogWeight" id="DogWeight">
+                        <option value="ExtraSmall">0.5-3 KG</option>
+                        <option value="Small">3-10 KG</option>
+                        <option value="Madium">10-20 KG</option>
+                        <option value="Madium+">20-30 KG</option>
+                        <option value="Big">30-40 KG</option>
+                        <option value="Huge">40+ KG</option>
+                    </select> <br><br>
+                    <button class="button" type="submit" onclick="matchPassword()">Submit</button>
+                    <p>  have an account? <a href="html1.html">Sign in </a></p>
+
+                </div>
+            
+            </form>     
+        </div>
+            
+
+    </div>
+
+</body>
+</html>
