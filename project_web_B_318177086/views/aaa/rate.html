@@ -5,34 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DogSis</title>
-    <link rel="stylesheet" href="./repository.css">
-    <link rel="icon" href="./pic/bone-removebg-preview.png" type="image/x-icon"
+    <link rel="stylesheet" href="./css.css">
+    <link rel="icon" href="./pic/bone-removebg-preview.png" type="image/x-icon">
+    <script defer src="./js.js"></script>
 </head>
 <body>
     <div class="GridContainer">
+        <div class="topnav" id="myTopnav">
+            <a href="signin.html" >Sign in</a>
+            <a href="registet.html">registet</a>
+            <a href="Search.html">Search</a>
+            <a href="#search" class="active">Rate</a>
+        </div>
         <div class="logo">
             <img id="bone" src="./pic/bone-removebg-preview.png" >            <header>DogSis</header> 
         </div>
         <div class="headrs">
             <h1>Dog Sitter Rate</h1>
-        
             <div class="rating ">
-    
                 <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
                 <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
                 <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
                 <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
                 <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-            
             </div>
-        </div>
-        <div class= "button Fsecond"</div> 
-            <button class="button" type="submit" >Send rank</button>
-            <!-- רוצה פופאפ -->
-        </div>
-        <a href="Search.html">Back</a>
-        </div>
+            <button class="button popup" type="submit"  onclick="sendRank()" >Send rank<span class="popuptext" id="myPopup">Thanks for the rating</span></button>
+        </div>  
+        <footer class="footer">
+            <p>Follow us</p>
+            <img class="footer_icon" src="../summerWEBanita/pic/facebool-removebg-preview.png" alt="">
+            <img class="footer_icon" src="../summerWEBanita/pic/instgram-removebg-preview.png" alt="">
+            <img class="footer_icon" src="../summerWEBanita/pic/Twiter-removebg-preview.png" alt="">
+        </footer>    
     </div>
-
 </body>
 </html>
