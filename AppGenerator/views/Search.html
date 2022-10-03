@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogSis</title>
+    <link rel="icon" href="../pic/bone-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/recap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script defer src="../static/js.js"></script>
+
+</head>
+<body>
+    <div class="GridContainer">
+        <div class="topnav" id="myTopnav">
+            <a href="/" >Sign in</a>
+            <a href="register">Register</a>
+            <a href="#search" class="active">Search</a>
+        </div>
+        <div class="logo">
+            <img id="bone" src="../pic/bone-removebg-preview.png" > 
+            <header>DogSis</header> 
+        </div>
+      
+        <div class="container">
+            <input class="form-control" id="myInput" type="text" placeholder="Search.. &#x1F50E" oninput="searchT()"><br>
+            <select class="sort by">
+                <option value="0">sort by:Distanse</option>
+                <option value="1">sort by:Top reviewed</option>
+            </select><br><br>
+            <br>
+            <div id="table-scroll">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        <th>Full Name</th>
+                        <th>City</th>
+                        <th>Phone number</th>
+                        <th>Experience</th>
+                        <th>Cost</th>
+                        <th>Free Text</th>
+                        <th>Distance</th>
+                        <th>site</th>
+                        <th>rate</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        <tr>
+                            <td>John love dogs</td>
+                            <td>Haifa</td>
+                            <td>0528468775</td>
+                            <td>3 years</td>
+                            <td>35 per hour</td>
+                            <td>i want to take care Of your dog</td>
+                            <td>2KM</td>
+                            <td><a class="link" href="https://www.dogmen.co.il/" target="_blank" name="link">John love dogs</a></td>
+                            <td>4.2 <br> <a class="link" href="rate.html">rate me</a></td>
+                        </tr>
+                        <tr>
+                            <td>Lior Ziv</td>
+                            <td>Warburg Field</td>
+                            <td>0732721817</td>
+                            <td>12 years</td>
+                            <td>43 per hour</td>
+                            <td>Boarding house for dogs, a place in nature</td>
+                            <td>4KM</td>
+                            <td></td>
+                            <td>5.0<br> <a class="link" href="rate.html">rate me</a></td>
+                        </tr>
+                        <tr>
+                            <td>Moty sitter</td>
+                            <td>Haifa</td>
+                            <td>0547466435</td>
+                            <td>5 years</td>
+                            <td>39 per hour</td>
+                            <td></td>
+                            <td>9KM</td>
+                            <td></td>
+                            <td>3.4<br> <a class="link" href="rate.html">rate me</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br><br>
+        </div>
+        <footer class="footer">
+            <p>Follow us</p>
+            <img class="footer_icon" src="../pic/facebool-removebg-preview.png" alt="">
+            <img class="footer_icon" src="../pic/instgram-removebg-preview.png" alt="">
+            <img class="footer_icon" src="../pic/Twiter-removebg-preview.png" alt="">
+        </footer>
+    </div> 
+</body>
+</html>

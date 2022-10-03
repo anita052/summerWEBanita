@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogSis</title>
+    <link rel="stylesheet" href="../static/recap.css">
+    <link rel="icon" href="../pic/bone-removebg-preview.png" type="image/x-icon">
+    <script defer src="../static/js.js"></script>
+</head>
+<body>
+    <div class="GridContainer">
+        <div class="topnav" id="myTopnav">
+            <a href="/" >Sign in</a>
+            <a href="register">register</a>
+            <a href="Search">Search</a>
+            <a href="#search" class="active">Rate</a>
+        </div>
+        <div class="logo">
+            <img id="bone" src="../pic/bone-removebg-preview.png" >
+            <header>DogSis</header> 
+        </div>
+        <div class="headrs">
+            <h1>Dog Sitter Rate</h1>
+            <div class="rating ">
+                <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+            </div>
+            <button class="button popup" type="submit"  onclick="sendRank()" >Send rank<span class="popuptext" id="myPopup">Thanks for the rating</span></button>
+        </div>  
+        <footer class="footer">
+            <p>Follow us</p>
+            <img class="footer_icon" src="../pic/facebool-removebg-preview.png" alt="">
+            <img class="footer_icon" src="../pic/instgram-removebg-preview.png" alt="">
+            <img class="footer_icon" src="../pic/Twiter-removebg-preview.png" alt="">
+        </footer>    
+    </div>
+</body>
+</html>

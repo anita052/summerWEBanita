@@ -1,0 +1,445 @@
+:root{
+    --MyGreen: #34571a;
+    --MyBeige: rgb(236, 233, 225);
+    --MyBlack: #000;
+    --MyLightGreen:#8ebf90;
+    --MGreen:#148d60dc;
+    --my11: rgb(236, 233, 225);
+    --mobile: linen;
+    --org:rgba(248, 207, 130, 0.694);
+    --myBrown:#ccb29b;
+    --yelow:#FFD700;
+    --lightGreen:#bac9bd;
+    --org2:#efcb7ddc;
+    --lightBlack:rgb(74, 67, 60);
+    --lightYelow:#d2ceb9;
+    
+
+}
+/* website font*/
+@font-face {
+  font-family: Heebo-Regular;
+  src: url(./heebo/Heebo-Regular.ttf);
+}
+*{
+  font-family: Heebo-Regular;
+}
+
+body {
+    background-color: var(--MyBeige);
+    font-family: Heebo-Regular;
+    display: grid;
+   }
+
+.GridContainer {
+  display: grid;
+  background-color: var(--MyBeige);
+  grid-template-areas:
+  'nav nav'
+  'Glogo Glogo'
+  'Gheader Gright' 
+  'form Gright'
+  'footer footer';
+}
+/* Link design */
+a{
+  font-weight: bold;
+}
+/* visited link */
+a:visited {
+  color: rgb(0, 77, 0);
+}
+/* mouse over link */
+a:hover {
+  color: #b79f89;
+}
+a.link {
+  color: rgb(113, 128, 97);
+}
+
+.topnav {
+  grid-area: nav;
+  position: absolute;
+  background-color: var(--MyGreen);
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: var(--MyBeige);
+  text-align: center;
+  padding: 1% 2%;
+  text-decoration: none;
+  font-size: 120%;
+}
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: var(--MyBeige);
+  color: var(--MyGreen);
+}
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: var(--MGreen);
+  color: var(--MyBeige);
+}
+.logo {
+  grid-area: Glogo;
+  width: 30%;
+  font-size: 18px;
+  color: var(--MyGreen);
+  font-weight: bold ;
+}
+/* bone in logo */
+#bone{
+  width: 8%;
+}
+/*  logo moves */
+.move {
+  position: relative;
+  -webkit-animation: slide 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 4 alternate;
+          animation: slide 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) 4 alternate;  
+}
+@-webkit-keyframes slide {
+  100% {
+    transform: translate3d(150px, 0, 0);
+  }
+}
+@property --k {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.headrs{
+  grid-area: Gheader;
+  color: var(--MyGreen);
+  margin: 0 0 0 20% ;
+  text-align: center;
+  text-shadow:  2px 2px 4px var(--org);
+  font-weight: bold;
+}
+
+.headrs h1{
+  font-size: 400%;
+}
+
+#myInput{
+  width: 20%;
+  margin-top: 3%;
+}
+
+.form{
+  grid-area: form;
+  display: grid;
+  grid-template-areas:
+  'form' ;
+  margin-left: 20%;
+  width: 100%;
+}
+.form .fields{
+  grid-area: form;
+  display: grid;
+  grid-template-areas:
+  'Gmidal1 Gmidal2 ' ;
+}
+.form input[type=text], .form select,.form input[type=radio] {
+  margin-top: 20px; 
+}
+.form input{
+  margin: 10px 10px 10px 10px ;
+  padding: 5px 5px 5px 5px;
+  border-radius: 15px;
+  border-color:  var(--MyBeige);
+  display: block;
+}
+.form .fields input{
+  display: block;
+}
+.form .Fsecond input, .form .Fsecond label {
+  margin: 10px 0 10px 5px ;
+}
+
+.Ffirst{
+ grid-area: Gmidal1; 
+}
+
+.Fsecond{
+  grid-area: Gmidal2;
+}
+/* עיצוב כפתורים */
+.select, option,button{
+  background-color: var(--myBrown);
+  color:  var(--MyGreen);
+}
+input[type=checkbox]{
+  display: inline;
+}
+.button {
+  border: none;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-weight: bold;
+}
+.button:focus {
+  outline-color: transparent;
+  outline-style:solid;
+  box-shadow: 0 0 0 4px var(--MyLightGreen);
+  transition: 0.7s;
+}
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* Image animation*/
+.image{
+  grid-area: Gright;
+  float: down;
+  margin-top: 20%;
+  --k: 0;
+  --j: calc(1 - var(--k));
+  --list: transparent calc(50% - 4vmin), red 0 calc(50% + 4vmin), transparent 0;
+  place-self: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: grayScale(var(--j));
+  --mask: radial-gradient(closest-side, red calc(50% - 1px), transparent 50%),
+  	radial-gradient(
+  		closest-side,
+  		transparent calc(50% - 5% + var(--k) * 2 *5% - 1px),
+  		red calc(50% - 5% + var(--k) * 2 *5%)
+  			calc(var(--k) * 70% + var(--j) *50% - 1px),
+  		transparent calc(var(--k) * 100% + var(--j) *50%)
+  	),
+  	linear-gradient(var(--list)), linear-gradient(90deg, var(--list)),
+  	linear-gradient(45deg, var(--list)), linear-gradient(-45deg, var(--list));
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+  -webkit-mask-composite: source-over, source-in, source-over, source-over, xor;
+          mask-composite: add, intersect, add, add;
+  transition: --k 0.2s ease-out;
+  width: 80%;
+  height: 80%;
+}
+
+img:hover {
+  --k: 1;
+}
+/*   table in search page */
+.table-row {
+  cursor: pointer;
+}
+#table-scroll {
+  position:relative;
+  height:220px;
+  overflow:auto;  
+  margin-top:20px;
+  width: 90%;
+  border: 2px solid var(--MyGreen);
+  border-radius: 9px;
+}
+#table-wrapper table {
+  width:100%;
+}
+/*   First row in a lookup table */
+thead{
+  color: var(--MyGreen);
+  font-weight: bold;
+  font-size: larger;
+  position: sticky;
+  top: 0;
+  background:var(--lightGreen);
+}
+/* Rating by stars */
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.rating > input{
+  display:none;
+}
+.rating > label {
+position: relative;
+width: 1.1em;
+font-size: 15vw;
+color: var(--yelow);
+cursor: pointer;
+}
+.rating > label::before{
+content: "\2605";
+position: absolute;
+opacity: 0;
+}
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+opacity: 1 !important;
+}
+.rating > input:checked ~ label:before{
+opacity:1;
+}
+.rating:hover > input:checked ~ label:before{ 
+opacity: 0.4;
+  }
+  /* Creating a red frame for cells that are mandatory    */
+  input:required:focus {
+  border: 1px solid red;
+  outline: none;
+}
+.footer{
+  grid-area: footer;
+}
+.footer p, .footer img{
+  display:  inline;
+  font-size: 18px;
+  font-weight: bold;
+  width: 25px;
+  margin: 2px;
+}
+.footer p{
+font-size: 90%;
+font-weight: bold;
+ display: block;
+ padding: 0;
+ margin: 0 60% 0 0;
+ margin-right: 70px;
+ width: 50%;
+}
+.footer #track{
+  margin-left: 7%;
+  font-size: smaller;
+  font-weight:lighter;
+}
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+#messagePsw{
+  color: red;
+}
+@media screen and (max-width: 800px) {
+  
+  body{
+    font-size: smaller;
+    width: 100%;
+  }
+  .GridContainer {
+      font-size: smaller;
+      display: grid;
+
+      grid-template-areas: 
+      'nav'
+      'Glogo'
+      'Gright'
+      'Gheader'
+      'form'
+      'footer' ;
+    }
+  .form .fields{
+    grid-area: form;
+    display: grid;
+    grid-template-areas:
+    'Gmidal1'
+    'Gmidal2' ;
+  }
+  .headrs{
+    margin: 0 0 0 0 ;
+  }
+  .image{
+    display: none;
+    visibility: hidden;
+  }
+  .logo,form input,::placeholder{
+    font-size: smaller;
+  }
+  .button{
+    font-size: 11px;
+  }
+  #table-scroll {
+    height:150px;
+  }
+  thead{
+    background-color:var(--lightYelow);
+  }
+  body,.GridContainer{
+    background-color: linen;
+  }
+  .Fsecond{
+    margin-left: 1%;
+  }
+  .topnav{
+    background-color:var(--lightYelow);
+  }
+  .topnav a {
+    display: block;
+    color: var(--lightBlack);
+  } 
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color:linen;
+  }
+  /* Add an active class to highlight the current page */
+  .topnav a.active {
+    background-color: var(--org2);
+    color: rgb(74, 67, 60);
+  }
+  #track{
+    padding-left: 12%;
+    font-size: smaller;
+  }
+}
