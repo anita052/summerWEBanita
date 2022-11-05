@@ -1,6 +1,7 @@
 const sql = require('./db');
 var path = require('path');
 const { FORMERR } = require('dns');
+const exp = require('constants');
 
 
 const createNewUser = (req, res)=>{
@@ -8,8 +9,6 @@ const createNewUser = (req, res)=>{
         res.status(400).send({message: "content cannot be empty"});
         return;
     }
-    console.log("checkkkkkkkkk"); 
-    console.log(req.body.DogGender+ "FDFD");
     var NewUser = {
         //condition ? exprIfTrue : exprIfFalse
         "Email": req.body.email,
@@ -25,27 +24,26 @@ const createNewUser = (req, res)=>{
     console.log(NewUser);
     sql.query("INSERT INTO users SET ?", NewUser, (err, mysqlres)=>{
         if (err) {
-            console.log("ERROR: ", err);
-            res.status(400).send({message: "error in creating an account " + err});
-            return;
+            const f1="User is already exist";
+            const f2="";
+            res.status(200).render('fail', {varFail1:f1 , varFail2:f2});
+            console.log("user exsist in DB");
+            return; 
         }
         console.log("New user created");
-        res.redirect("/");
+        res.render("signin");
         return;
     } )
 
-}; 
-
-const Finduser = (req, res)=>{
+}
+    //find user from database
+    const Finduser = (req, res,next)=>{
     if (!req.body) {
         res.status(400).send({message: "serch cannot be empty"});
         return;        
     }
-    // const User = req.query.SearchName;
     var User = req.body.email;
     var password=req.body.password;
-
-    console.log(User+ "anita");
     sql.query("SELECT * FROM users where (Email =? AND password =?)" , [User,password] , (err, results, fields)=>{
         if (err) {
             console.log("ERROR IS: " + err);
@@ -53,75 +51,185 @@ const Finduser = (req, res)=>{
             return;
         }
         if(results.length ==0){
-            res.status(400).send({message: "error in creating an account " + err});
-            return;
+            const f1="User is not found in database,";
+            const f2="User Name or Password are incorrect.";
+            res.status(200).render('fail', {varFail1:f1 , varFail2:f2});
+            console.log("user doesnt exsist DB");
+            return; 
         }
         console.log("User found");
-        // res.send(results);
-        res.redirect("/search");
+        const lat1=req.body.GeoLat;
+        const log1=req.body.GeoLong;
+        res.render('Search2',{GeoLong : log1,GeoLat :lat1 });
+        return;
+    } );
+};
+
+//show dogsiter table
+const ShowAllDogiSiters = (req,res)=>{
+    const lat1=req.body.GeoLat;
+    const log1=req.body.GeoLong;
+    const Q2 ="SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters ORDER BY Distance ";
+    sql.query(Q2,[lat1,log1,log1], (err, mysqlres)=>{
+        if (err) {
+            console.log("error in getting all dogsiters " + err);
+            res.status(400).send({message:"error in getting all dogsiters " + err})
+            return;
+        }
+        console.log("success... ");
+        res.render('Results', {
+            pple: mysqlres
+        });
         return;
     });
 };
-const tableCalculate =(req, res,next)=>{
-    const lat1=22;
-    const log1=23;
-    sql.query("UPDATE dogsiters SET Distance= (3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longitude) * pi()/180 / 2), 2) )))",[lat1,log1,log1])
 
-    var x= 32.321458;
-    var y=34.853196;
-    console.log("KLKLKL");
-    sql.query("SELECT * FROM dogsiters",(err, mysqlre)=>{
-        console.log("בפנים");
+//dog sitter table filterd
+const searchDogsitter = (req,res)=>{
+    var Q4;
+    var Values=[];
+    var log1=req.body.GeoLong;
+    var lat1=req.body.GeoLat;
+    var rate=req.body.rankFilter;
+    console.log("shuki");
+    console.log(rate);
+    var city=req.body.city;
+    if(city!=0){
+        city=CheckCity(city);
+    }
+    console.log("city"+city)
+    var experience=req.body.expFilter;
+    console.log("tooki");
+    console.log(experience);
+    var sort=req.body.sort;
+
+    if(rate==undefined && experience == undefined){
+        const f3="No Dogsitter rate and experirnce fielfd was entered";
+        const f4="You must choose Dogsitter rate and experirnce";
+        res.status(200).render('fail', {varFail1:f3 , varFail2:f4});
+        return; 
+    }
+    if(rate==undefined){
+        const f3="No Dogsitter rate field was entered";
+        const f4="You must choose Dogsitter rate ";
+        res.status(200).render('fail', {varFail1:f3 , varFail2:f4});
+        return; 
+    }
+    if(experience == undefined){
+        const f3="No Dogsitter experirnce field was entered";
+        const f4="You must choose Dogsitter experirnce";
+        res.status(200).render('fail', {varFail1:f3 , varFail2:f4});
+        return; 
+    }
+    // city and not geo location
+    if(city==0 && sort==0 ){
+        Q4=" SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longtitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters WHERE Experience >= ? AND Rate >= ? ORDER BY Distance ";
+        Values=[lat1,log1,log1,experience,rate];
+    }
+    // no filter of city or range
+    if(city==0 && sort==1){
+        Q4=" SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longtitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters WHERE Experience >= ? AND Rate >= ? ORDER BY Rate DESC ";
+        Values=[lat1,log1,log1,experience,rate];
+    }
+    // filter of range
+    if(city==0 && sort==2){   
+       Q4=" SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longtitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters WHERE Experience >= ? AND Rate >= ? ORDER BY Cost ASC ";
+       Values=[lat1,log1,log1,experience,rate];
+    }
+    if(city!=0 && sort==0 ){
+        Q4=" SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longtitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters WHERE Experience >= ? AND Rate >= ? AND(City=?) ORDER BY Distance ";
+        Values=[lat1,log1,log1,experience,rate,city];
+    }
+    if(city!=0 && sort==1 ){
+        Q4=" SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longtitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters WHERE Experience >= ? AND Rate >= ? AND(City=?) ORDER BY Rate DESC ";
+        Values=[lat1,log1,log1,experience,rate,city];
+    }
+    else if(city!=0 && sort==2 ){
+        Q4=" SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longtitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters WHERE Experience >= ? AND Rate >= ? AND(City=?) ORDER BY Cost ASC";
+        Values=[lat1,log1,log1,experience,rate,city];
+    }
+    // execute query
+    sql.query(Q4,Values, (err, mysqlres)=>{
         if (err) {
-            console.log("ERROR IS: " + err);
-            res.status(400).send("Somthing is wrong with query" + err);
+            console.log("error in getting all dogsiters " + err);
+            res.status(400).send({message:"error in getting all dogsiters " + err})
             return;
         }
-        console.log(mysqlre);
-        console.log("taaa");
+        console.log("success... ");
+        res.render('Results', {
+            pple: mysqlres
+        });
         return;
-
-        // var data=mysqlre;
-        // var table = "" ;
- 
-		// for(var i in data){
-		// 	table += "<tr>";
-		// 	table += "<td>" 
-		// 			+ data[i].Id +"</td>" 
-		// 			+ "<td>" + data[i].FullName +"</td>" 
-		// 			+ "<td>" + data[i].City +"</td>" ;
-		// 	table += "</tr>";
-		// }
- 
-	// document.getElementById("myTable").innerHTML = table;
-        // return;
     });
     
-    // sql.query("DECLARE @orig_lat DECIMAL DECLARE @orig_lng DECIMAL SET @orig_lat=53.381538 set @orig_lng=-1.463526 SELECT *,3956 * 2 * ASIN(SQRT( POWER(SIN((@orig_lat - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(@orig_lng * pi()/180 ) * COS(abs(dogsiters.Latitude) * pi()/180)   * POWER(SIN((@orig_lng - dogsiters.Longitude) * pi()/180 / 2), 2) )) AS distance FROM dogsiters")
+};
 
 
-}   
+// 3. check the city of the show:
+function CheckCity(city){
+    if(city==1){
+        city = 'Beer Sheva';
+     }
+     else if(city==2){
+         city = 'Tel Aviv';
+     }
+     else if(city==3){
+         city = 'Jerusalem';
+     }
+     else{
+         city = 'Haifa';
+     }
+     return city;
+};
+// 4. check the range km of the show:
+function CheckRange(range){
+    if(range==1){
+        Distance=10;
+    }
+    else if(range==2){
+        Distance=25;
+    }
+    else if(range==3){
+        Distance=50;
+    }
+    else if(range==4){
+        Distance=90000;
+    }
+    return Distance;
+};
 
+    const sendRank = (req, res)=>{
+        if (!req.body) {
+            res.status(400).send({message: "search cannot be empty"});
+            return;        
+        }
+        console.log(req.body);
+        if(req.body.rank==0){
+            const f3="You have not selected a rank";
+            const f4="";
+            res.status(500).render('fail', {varFail1:f3 , varFail2:f4});
+            return;
+        }
 
-//help function that calculate dist
-// function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-//     var R = 6371; // Radius of the earth in km
-//     var dLat = deg2rad(lat2-lat1);  // deg2rad below
-//     var dLon = deg2rad(lon2-lon1); 
-//     var a = 
-//       Math.sin(dLat/2) * Math.sin(dLat/2) +
-//       Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-//       Math.sin(dLon/2) * Math.sin(dLon/2)
-//       ; 
-//     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-//     var d = R * c; // Distance in km
-//     return d.toFixed(3);
-//   }
-  
-//   function deg2rad(deg) {
-//     return deg * (Math.PI/180)
-//   }
+        var id = req.body.id;
+        var rank=req.body.rank;
+        sql.query("UPDATE dogsiters SET Rate= (((Rate * countRaters) + ?) / (countRaters + 1)) , countRaters = countRaters+1 WHERE id= ?" , [rank,id] , (err, results, fields)=>{
+            if (err) {
+                console.log("ERROR IS: " + err);
+                res.status(400).send("Somthing is wrong with query" + err);
+                return;
+            }
+            if(results.length ==0){
+                const f1="User is not found in database,";
+                const f2="User Name or Password are incorrect.";
+                res.status(200).render('fail', {varFail1:f1 , varFail2:f2});
+                console.log("user doesnt exsist DB");
+                return; 
+            }
+            console.log("User found");
+            res.render('Search2');
+            return;
+        } );
+}
 
-
-
-module.exports = {createNewUser, Finduser,tableCalculate};
+module.exports = {createNewUser, Finduser,ShowAllDogiSiters,searchDogsitter,sendRank};

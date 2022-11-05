@@ -14,7 +14,6 @@
     --lightBlack:rgb(74, 67, 60);
     --lightYelow:#d2ceb9;
     
-
 }
 /* website font*/
 @font-face {
@@ -130,7 +129,7 @@ a.link {
   margin-top: 3%;
 }
 
-.form{
+.form, .forma{
   grid-area: form;
   display: grid;
   grid-template-areas:
@@ -372,6 +371,13 @@ font-weight: bold;
 #messagePsw{
   color: red;
 }
+#GeoLat , #GeoLong{
+  font-size: 1px; 
+  margin: 0px;
+  padding: 0px;
+  visibility: hidden; 
+  display: inline;
+}
 @media screen and (max-width: 800px) {
   
   body{
@@ -400,7 +406,7 @@ font-weight: bold;
   .headrs{
     margin: 0 0 0 0 ;
   }
-  .image{
+  .image,.imag{
     display: none;
     visibility: hidden;
   }

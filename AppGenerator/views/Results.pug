@@ -1,0 +1,50 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title DogSis
+  link(rel='icon' href='./pic/bone-removebg-preview.png' type='image/x-icon')
+  link(rel='stylesheet' href='recap.css')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+  script(defer='' src='js.js')
+body 
+    .GridContainer
+        #myTopnav.topnav
+            a(href='Search2') Search
+            a.active(href='#search') Results
+            
+        .logo
+            img#bone(src='../pic/bone-removebg-preview.png')
+            header DogSis
+        #table-scroll
+            table.table.table-bordered.table-striped
+                thead
+                    tr
+                    th Full Name
+                    th City
+                    th Phone number
+                    th Experience
+                    th Cost
+                    th Free Text
+                    th Distance
+                    th site
+                    th rate
+                tbody#myTable
+                each n in pple
+                    tr
+                    td= n.FullName  
+                    td= n.City 
+                    td= n.Phone
+                    td= n.Experience   
+                    td= n.Cost  
+                    td= n.freeText  
+                    td= n.Distance  
+                    td= n.Site
+                    td= n.Rate + " "
+                        a(href="rate?id=" + n.id) Rank
+        footer.footer
+            p Follow us
+            img.footer_icon(src='../pic/facebool-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/instgram-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/Twiter-removebg-preview.png' alt='')

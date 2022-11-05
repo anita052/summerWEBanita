@@ -1,0 +1,73 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title DogSis
+  link(rel='icon' href='./pic/bone-removebg-preview.png' type='image/x-icon')
+  link(rel='stylesheet' href='recap.css')
+  script(defer='' src='js.js')
+body 
+    .GridContainer
+        #myTopnav.topnav
+            a.active(href='#search') Search
+        .logo
+            img#bone(src='../pic/bone-removebg-preview.png')
+            header DogSis
+        .forma
+            form.fields(action='/rate' method='post')
+                .Ffirst
+                    h3 Dogsitter rate:
+                    label.price(for='sitterprice')
+                        input.radio(type='radio' value=0 name='rankFilter' onclick="onlyOne(this)" )
+                        | all
+                    label
+                        input.radio(type='radio' value=3 name='rankFilter' onclick="onlyOne(this)")
+                        | 3+
+                    label
+                        input.radio(type='radio' value=4 name='rankFilter' onclick="onlyOne(this)")
+                        | 4+
+                    label
+                        input.radio(type='radio' value=5 name='rankFilter' onclick="onlyOne(this)")
+                        | 5
+                    br
+                    br
+                    label#cityL(for='city') City:
+                    select#city.city(name='city' )
+                        option(value='0') all
+                        option(value='1') Beer-Sheva
+                        option(value='2') Tel-Aviv
+                        option(value='3') Jerusalem
+                        option(value='4') Haifa
+                    br
+                    h3 Years of experience:
+                    label.price(for='experience')
+                        input.radio(type='radio' value=0 name='expFilter' onclick="onlyOne1(this)" )
+                        | all
+                    label
+                        input.radio(type='radio' value=1 name='expFilter' onclick="onlyOne1(this)")
+                        | 1+
+                    label
+                        input.radio(type='radio' value=5 name='expFilter' onclick="onlyOne1(this)")
+                        | 5+
+                    label
+                        input.radio(type='radio' value=10 name='expFilter' onclick="onlyOne1(this)")
+                        | 10+
+                    br
+                .Fsecond
+                    h4 Sort By:
+                    select#sort.sort.by(name='sort')
+                        option(value='0' ) Distance ↑
+                        option(value='1' ) Rank ↓
+                        option(value='2' ) Price ↑
+                    input#GeoLong(type='number' name='GeoLong') 
+                    input#GeoLat(type='number' name='GeoLat') 
+                button.button(type='submit' ) Search
+                br
+            
+        footer.footer
+            p#track *Please enable location tracking when using the application
+            p Follow us
+            img.footer_icon(src='../pic/facebool-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/instgram-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/Twiter-removebg-preview.png' alt='')

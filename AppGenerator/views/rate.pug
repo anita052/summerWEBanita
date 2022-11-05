@@ -1,0 +1,37 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title DogSis
+  link(rel='stylesheet' href='recap.css')
+  link(rel='icon' href='./pic/bone-removebg-preview.png' type='image/x-icon')
+  script(defer='' src='js.js')
+body 
+    .GridContainer
+        #myTopnav.topnav
+            a(href='Search2') Search
+            a.active(href='#rate') Rate
+        .logo
+            img#bone(src='../pic/bone-removebg-preview.png')
+            header DogSis
+        .headrs
+            h1 Dog Sitter Rate
+            .rating
+                input#5(type='radio' name='rating' value='5')
+                label(for='5') &star;
+                input#4(type='radio' name='rating' value='4')
+                label(for='4') &star;
+                input#3(type='radio' name='rating' value='3')
+                label(for='3') &star;
+                input#2(type='radio' name='rating' value='2')
+                label(for='2') &star;
+                input#1(type='radio' name='rating' value='1' checked=true)
+                label(for='1') &star;
+            button.button.popup(type='submit' onclick='sendRank()') Send rank
+                span#myPopup.popuptext Thanks for the rating
+        footer.footer
+            p Follow us
+            img.footer_icon(src='../pic/facebool-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/instgram-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/Twiter-removebg-preview.png' alt='')

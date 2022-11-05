@@ -1,0 +1,67 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title DogSis
+  link(rel='stylesheet' href='recap.css')
+  link(rel='icon' href='./pic/bone-removebg-preview.png' type='image/x-icon')
+  script(defer='' src='js.js')
+body 
+    .GridContainer
+        #myTopnav.topnav
+            a(href='/SignIn') Sign in
+            a.active(href='#register') Register
+        .logo.move
+            img#bone(src='./pic/bone-removebg-preview.png')
+            header DogSis
+        .headrs
+            h1 DogSis
+            h3 Join our community and find the perfect doggister for your dog
+        img.image(src='./pic/dogwalker.jpg')
+        .form
+            form.fields(action='/createUser' method='post')
+
+                .Ffirst
+                    input#email(type='email' placeholder=' Email*' name='email' required='')
+                    input#pswd1(type='password' placeholder=' Password*' name='pswd1' title='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters' onkeyup='PswValid();' required='')
+                    input#pswd2(type='password' placeholder=' Confirm Password*' name='pswd2' onkeyup='PswValid();' required='')
+                    span#messagePsw
+                    input#fname(type='text' placeholder=' Full name*' name='fname'  title='must contain letters only' required='')
+                    input#Phone(type='tel' placeholder=' Phone number' name='Phone' pattern='[0-9]{3}-[0-9]{4}-[0-9]{3}' title='Format: xxx-xxxx-xxx')
+                .Fsecond
+                    input#DogName(type='text' placeholder=' Dog Name' name='DogName')
+                    input#DogBreed(type='text' placeholder=' Dog Breed' name='DogBreed' title='Must contain letters only')
+                    label(for='DogGender') Dog Gender:
+                    select#DogGender(name='DogGender')
+                        option(value='0') Gender
+                        option(value='Male Dog') male
+                        option(value='Female Dog') Female
+                    br
+                    label(for='DogAge') Dog Age:
+                    select#DogAge(name='DogAge')
+                        option(value='0') Age
+                        option(value='Puppy') 0-2
+                        option(value='Young') 2-7
+                        option(value='Adult') 7-10
+                        option(value='Old') 10+
+                    br
+                    label(for='DogWeight')  Weight:
+                    select#DogWeight(name='DogWeight')
+                        option(value='0') Weight
+                        option(value='ExtraSmall') 0.5-3 KG
+                        option(value='Small') 3-10 KG
+                        option(value='Madium') 10-20 KG
+                        option(value='Madium+') 20-30 KG
+                        option(value='Big') 30-40 KG
+                        option(value='Huge') 40+ KG
+                    br
+                    br
+                    button.button(type='submit') Submit
+            p have an account? 
+              a(href='/')  Sign in 
+        footer.footer
+            p Follow us
+            img.footer_icon(src='../pic/facebool-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/instgram-removebg-preview.png' alt='')
+            img.footer_icon(src='../pic/Twiter-removebg-preview.png' alt='')
