@@ -11,15 +11,18 @@ head
 body 
     .GridContainer
         #myTopnav.topnav
-            a(href='/') Sign in
-            a(href='register') register
+            a(href=varFail1) #{varFail2}
+            //- a(href='register') register
+            //- a(href="'varFail3'") #{varFail3}
+            //- a(href='register') #{varFail4}
+
         .logo
             img#bone(src='../pic/bone-removebg-preview.png')
             header DogSis
         .headrs
             h1 Whoops!
-            h2 #{varFail1}
-            h2 #{varFail2}
+            h2 #{varFail3}
+            h2 #{varFail4}
         img.imag(src='./pic/sadDog-removebg-preview.png'  alt='')
         footer.footer
                 p Follow us

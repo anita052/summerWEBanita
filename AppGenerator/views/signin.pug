@@ -10,8 +10,8 @@ head
   body 
     .GridContainer
         #myTopnav.topnav
-            a.active(href='//localhost:8080') Sign in
-            a(href='//localhost:8080/register') Register
+            a.active(href='') Sign in
+            a(href='/register') Register
         .logo.move
             img#bone(src='../pic/bone-removebg-preview.png')
             header DogSis
@@ -20,9 +20,9 @@ head
             h3 Join our community and find the perfect doggister for your dog
         img.image(src='./pic/dogwalker.jpg')
         .form
-            form.fields(action='/Results' method='post')
+            form.fields(action='/Search' method='post')
                 .Ffirst
-                    input#email(type='email' placeholder='Email ' name='email' onchange='getLocation()' required='')
+                    input#email(type='email' placeholder='Email ' name='email'  required='')
                     input#password(type='password' placeholder='Password' name='password' required='')
                     button.button(type='submit' ) Login
                     br

@@ -11,7 +11,7 @@ body
     .GridContainer
         #myTopnav.topnav
             a(href='/SignIn') Sign in
-            a.active(href='#register') Register
+            a.active(href='') Register
         .logo.move
             img#bone(src='./pic/bone-removebg-preview.png')
             header DogSis
@@ -24,19 +24,19 @@ body
 
                 .Ffirst
                     input#email(type='email' placeholder=' Email*' name='email' required='')
-                    input#pswd1(type='password' placeholder=' Password*' name='pswd1' title='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters' onkeyup='PswValid();' required='')
+                    input#pswd1(type='password' placeholder=' Password*' name='pswd1' pattern='(?=.*[a-z])(?=.*[A-Z]).{8,}' title='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters' onkeyup='PswValid();' required='')
                     input#pswd2(type='password' placeholder=' Confirm Password*' name='pswd2' onkeyup='PswValid();' required='')
                     span#messagePsw
-                    input#fname(type='text' placeholder=' Full name*' name='fname'  title='must contain letters only' required='')
-                    input#Phone(type='tel' placeholder=' Phone number' name='Phone' pattern='[0-9]{3}-[0-9]{4}-[0-9]{3}' title='Format: xxx-xxxx-xxx')
+                    input#fname(type='text' placeholder=' Full name*' name='fname' pattern='^.* .*$'  title='must contain letters only' required='')
+                    input#Phone(type='tel' placeholder=' Phone number' name='Phone' pattern='[0-9-+]{9,10}' title='phone number must be with 9 or 10 digits')
                 .Fsecond
                     input#DogName(type='text' placeholder=' Dog Name' name='DogName')
                     input#DogBreed(type='text' placeholder=' Dog Breed' name='DogBreed' title='Must contain letters only')
                     label(for='DogGender') Dog Gender:
                     select#DogGender(name='DogGender')
                         option(value='0') Gender
-                        option(value='Male Dog') male
-                        option(value='Female Dog') Female
+                        option(value='Male') Male
+                        option(value='Female') Female
                     br
                     label(for='DogAge') Dog Age:
                     select#DogAge(name='DogAge')

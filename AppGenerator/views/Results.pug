@@ -11,8 +11,8 @@ head
 body 
     .GridContainer
         #myTopnav.topnav
-            a(href='Search2') Search
-            a.active(href='#search') Results
+            a(href='Search') Search
+            a.active(href='') Results
             
         .logo
             img#bone(src='../pic/bone-removebg-preview.png')
@@ -28,7 +28,6 @@ body
                     th Cost
                     th Free Text
                     th Distance
-                    th site
                     th rate
                 tbody#myTable
                 each n in pple
@@ -36,13 +35,13 @@ body
                     td= n.FullName  
                     td= n.City 
                     td= n.Phone
-                    td= n.Experience   
-                    td= n.Cost  
+                    td= n.Experience +" Years"  
+                    td= n.Cost + " NIS" 
                     td= n.freeText  
-                    td= n.Distance  
-                    td= n.Site
-                    td= n.Rate + " "
-                        a(href="rate?id=" + n.id) Rank
+                    td= n.Distance + " KM" 
+                    td= n.Rate + " " 
+                        br 
+                        a(href="rate?id=" + n.id) Rank Me
         footer.footer
             p Follow us
             img.footer_icon(src='../pic/facebool-removebg-preview.png' alt='')

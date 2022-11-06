@@ -10,25 +10,25 @@ head
 body 
     .GridContainer
         #myTopnav.topnav
-            a.active(href='#search') Search
+            a.active(href='') Search
         .logo
             img#bone(src='../pic/bone-removebg-preview.png')
             header DogSis
         .forma
-            form.fields(action='/rate' method='post')
+            form.fields(action='/Results' method='post')
                 .Ffirst
                     h3 Dogsitter rate:
                     label.price(for='sitterprice')
-                        input.radio(type='radio' value=0 name='rankFilter' onclick="onlyOne(this)" )
+                        input.radio(type='radio' value=0 name='rankFilter' onclick="getLocation()" )
                         | all
                     label
-                        input.radio(type='radio' value=3 name='rankFilter' onclick="onlyOne(this)")
+                        input.radio(type='radio' value=3 name='rankFilter' onclick="getLocation()")
                         | 3+
                     label
-                        input.radio(type='radio' value=4 name='rankFilter' onclick="onlyOne(this)")
+                        input.radio(type='radio' value=4 name='rankFilter' onclick="getLocation()")
                         | 4+
                     label
-                        input.radio(type='radio' value=5 name='rankFilter' onclick="onlyOne(this)")
+                        input.radio(type='radio' value=5 name='rankFilter' onclick="getLocation()")
                         | 5
                     br
                     br
@@ -42,16 +42,16 @@ body
                     br
                     h3 Years of experience:
                     label.price(for='experience')
-                        input.radio(type='radio' value=0 name='expFilter' onclick="onlyOne1(this)" )
+                        input.radio(type='radio' value=0 name='expFilter' )
                         | all
                     label
-                        input.radio(type='radio' value=1 name='expFilter' onclick="onlyOne1(this)")
+                        input.radio(type='radio' value=1 name='expFilter' )
                         | 1+
                     label
-                        input.radio(type='radio' value=5 name='expFilter' onclick="onlyOne1(this)")
+                        input.radio(type='radio' value=5 name='expFilter' )
                         | 5+
                     label
-                        input.radio(type='radio' value=10 name='expFilter' onclick="onlyOne1(this)")
+                        input.radio(type='radio' value=10 name='expFilter')
                         | 10+
                     br
                 .Fsecond

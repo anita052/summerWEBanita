@@ -2,11 +2,11 @@ const express = require('express');
 const path = require('path');
 const bodyparser = require ('body-parser');
 const CRUD = require('./CRUD_functions');
-const createDB = require('./createDB_anita');
+const createDB = require('./DB/createDB_anita');
 const port =8080;
 
-const sql = require('./db');
-const connection = require('./db');
+const sql = require('./DB/db');
+const connection = require('./DB/db');
 
 //set up app
 var app = express();
@@ -25,13 +25,11 @@ app.get('/',[main]);
 app.get('/register',(req,res)=>{
   res.render('register');
 });
-app.get('/Results',(req,res)=>{
-  res.render('Results');
-});
+
 app.get('/rate',(req,res)=>{
   res.render('rate');
 });
-app.get('/Search2',(req,res)=>{
+app.get('/Search',(req,res)=>{
   res.render('Search2');
 });
 app.get('/SignIn',(req,res)=>{
@@ -39,8 +37,8 @@ app.get('/SignIn',(req,res)=>{
 });
 
 app.post('/createUser', CRUD.createNewUser);
-app.post('/Results', CRUD.Finduser);
-app.post('/rate', CRUD.searchDogsitter);
+app.post('/Search', CRUD.Finduser);
+app.post('/Results', CRUD.searchDogsitter);
 app.post('/sendRank', CRUD.sendRank);
 
 // catch 404 and forward to error handler

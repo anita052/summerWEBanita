@@ -20,10 +20,8 @@ var PswValid=function() {
 var x = document.getElementById("GeoLong");
 var y = document.getElementById("GeoLat");
 function getLocation() {
-  console.log("in geo 100");
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
-    console.log("in geo 1");
   } else {
     x.setAttribute('value',0 );  
     y.setAttribute('value',0 );  }
@@ -48,7 +46,6 @@ function sendRank() {
   // Get dog sitter ID from query param
   const params = new URLSearchParams(window.location.search);
   const dogSitterID = params.get("id");
- 
 
   // Extract Rate 
   var s1Checked = document.getElementById("1").checked ? 1 : 0;
@@ -72,29 +69,7 @@ function sendRank() {
   popup.classList.toggle("show");
 }
 
-function lsRememberMe() {
-  if (rmCheck.checked && emailInput.value !== "") {
-    localStorage.username = emailInput.value;
-    localStorage.checkbox = rmCheck.value;
-  } else {
-    localStorage.username = "";
-    localStorage.checkbox = "";
-  }
-}
-function onlyOne(checkbox) {
-  var checkboxes = document.getElementsByName('check')
-  checkboxes.forEach((item) => {
-      if (item !== checkbox) item.checked = false
-  })
-  getLocation();
 
-}
-function onlyOne1(checkbox1) {
-  var checkboxes1 = document.getElementsByName('experience')
-  checkboxes1.forEach((item) => {
-      if (item !== checkbox1) item.checked = false
-  })
-}
 
 
 
