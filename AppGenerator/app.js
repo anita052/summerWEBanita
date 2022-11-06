@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyparser = require ('body-parser');
 const CRUD = require('./CRUD_functions');
-const createDB = require('./DB/createDB_anita');
+const createDB = require('./DB/createDB');
 const port =8080;
 
 const sql = require('./DB/db');
