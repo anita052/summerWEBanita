@@ -64,23 +64,6 @@ const createNewUser = (req, res)=>{
     } );
 };
 
-// //show dogsiter table
-// const ShowAllDogiSiters = (req,res)=>{
-//     const lat1=req.body.GeoLat;
-//     const log1=req.body.GeoLong;
-//     const Q ="SELECT *, ROUND((3956 * 2 * ASIN(SQRT( POWER(SIN((? - abs(dogsiters.Latitude)) * pi()/180 / 2), 2) + COS(? * pi()/180 ) * COS(abs(dogsiters.Latitude)* pi()/180)* POWER(SIN((? - dogsiters.Longitude) * pi()/180 / 2), 2) ))),1) AS Distance FROM dogsiters ORDER BY Distance ";
-//     sql.query(Q,[lat1,log1,log1], (err, mysqlres)=>{
-//         if (err) {
-//             console.log("error in getting all dogsiters " + err);
-//             res.status(400).send({message:"error in getting all dogsiters " + err})
-//             return;
-//         }
-//         res.render('Results', {
-//             pple: mysqlres
-//         });
-//         return;
-//     });
-// };
 
 //dog sitter table filterd
 const searchDogsitter = (req,res)=>{
@@ -198,7 +181,6 @@ function CheckCity(city){
                 res.status(400).send("Somthing is wrong with query" + err);
                 return;
             }
-            res.render('Search2');
             return;
         } );
 }

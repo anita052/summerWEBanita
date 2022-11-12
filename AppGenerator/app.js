@@ -5,9 +5,6 @@ const CRUD = require('./CRUD_functions');
 const createDB = require('./DB/createDB');
 const port =8080;
 
-const sql = require('./DB/db');
-const connection = require('./DB/db');
-
 //set up app
 var app = express();
 app.use(bodyparser.json());
